@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Memeloader!</string>
+    <string name="no_image">no image</string>
+    <string name="grab_button_text">Grab me a meme1</string>
+</resources>
