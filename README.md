@@ -33,9 +33,37 @@ to apkmirror or similar. The attacker could even likely add in a splash which
 explains new permissions it is requesting in the hopes that users will likely
 blindly approve new permissions of a premium app like "MemeLoader!"
 
+### How-to (as the attacker)
+
+First, we must write and compile our app (DoEvil in this case) to generate our
+smali output. It is possible to do more complex actions, but I chose to write
+the method to do a single action from a static function, making it easy to
+import and execute in any context. We first must decompile both the our evil
+apk and the app we are adding on our code to:
+
+```
+apktool d -o meme_unloaded memloader.apk
+apktool d -o evil_unloaded doevil.apk
+
+```
+
+From here, we can easily pull our malicious code in smali form to the Memeloader
+code. We need to ensure that we change all references to our code and take out
+any debug calls we had in our method (I left them in for now, since stealth is
+not exactly the endstate of my malicious method). After that, we repackage the
+app with apktool and resign with our own malicious app signing key.
+
+```
+apktool b -o unsigned.apk evil_meme_unloaded/
+apksigner sign --ks evil_release.keystore --in unsigned.apk --out totally_okay_app.apk
+rm unsigned.apk
+```
+
 ### Created with
 
 ```
 Android SDK (Android Studio/Gradle v4.0.1)
 python3
+apktool
+apksigner (build-tools/28.0.3)
 ```
