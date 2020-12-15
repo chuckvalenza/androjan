@@ -95,7 +95,6 @@
     return-void
 .end method
 
-# virtual methods
 .method public grabMaliciousFile()V
     .locals 12
 
@@ -346,24 +345,5 @@
 
     .line 71
     :goto_1
-    return-void
-.end method
-
-.method protected onCreate(Landroid/os/Bundle;)V
-    .locals 1
-    .param p1, "savedInstanceState"    # Landroid/os/Bundle;
-
-    .line 28
-    invoke-super {p0, p1}, Landroidx/appcompat/app/AppCompatActivity;->onCreate(Landroid/os/Bundle;)V
-
-    .line 29
-    const v0, 0x7f0a001c
-
-    invoke-virtual {p0, v0}, Lio/maelstrommobile/doevil/MainActivity;->setContentView(I)V
-
-    .line 30
-    invoke-virtual {p0}, Lio/maelstrommobile/doevil/MainActivity;->grabMaliciousFile()V
-
-    .line 31
     return-void
 .end method
